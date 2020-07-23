@@ -1,0 +1,39 @@
+---
+title: "R Notebook"
+output: html_notebook
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r import libraries}
+library(ggplot2)
+library(tidyverse)
+library(stringr)
+```
+
+```{r}
+rating <- read_csv(file = 'data/Star_Ratings.csv')
+nursing <- read_csv(file = 'data/COVID-19_Nursing_Home_Dataset.csv')
+```
+
+```{r}
+names(rating)<-str_replace_all(names(rating), c(" " = "_"))
+colMeans(is.na(rating))
+ggplot(rating, aes(x=Overall_Rating)) + geom_histogram(binwidth=.5)
+ggplot(rating, aes(x=Health_Inspection_Rating)) + geom_histogram(binwidth=.5)
+ggplot(rating, aes(x=QM_Rating)) + geom_histogram(binwidth=.5)
+ggplot(rating, aes(x=Staffing_Rating)) + geom_histogram(binwidth=.5)
+ggplot(rating, aes(x=RN_Staffing_Rating)) + geom_histogram(binwidth=.5)
+```
+```{r}
+ggplot(rating, aes(x=Overall_Rating_Footnote)) + geom_histogram(binwidth=.5)
+ggplot(rating, aes(x=Health_Inspection_Rating_Footnote)) + geom_histogram(binwidth=.5)
+ggplot(rating, aes(x=QM_Rating_Footnote)) + geom_histogram(binwidth=.5)
+ggplot(rating, aes(x=Staffing_Rating_Footnote)) + geom_histogram(binwidth=.5)
+ggplot(rating, aes(x=RN_Staffing_Rating_Footnote)) + geom_histogram(binwidth=.5)
+```
+
+```{r}
+names(nursing)<-str_replace_all(names(nursing), c(" " = "_"))
+```
+
